@@ -3,6 +3,7 @@ import NavBar from './NavBar';
 import WorldMap from './WorldMap';
 import Cards from './Cards';
 import EmotionalRadar from './EmotionalRadar';
+import Timeline from './Timeline'
 import Footer from './Footer'
 import Container from 'react-bootstrap/Container';
 
@@ -12,14 +13,14 @@ class Home extends React.Component{
             <div>
             <NavBar/>
             <Container className='mt-5 mb-5'>
-      
+
               <div>
                 <h1>Análisis de Twitter para COVID-19</h1>
                 <p>
                   A continuación se muestran los resultados de un análisis de mensajes de twitter
                 </p>
               </div>
-      
+
               <div className='mt-5 mb-5'>
                 <div className='d-flex justify-content-center'>
                   <h1> Palabras clave </h1>
@@ -32,7 +33,25 @@ class Home extends React.Component{
                 </div>
                 <Cards/>
               </div>
-      
+
+
+              <div className='mt-5 mb-5'>
+
+                <div className='d-flex justify-content-center'>
+                  <h1> Linea del tiempo de hashtags </h1>
+                  </div>
+                  <div className='d-flex justify-content-center text-secondary'>
+                  <p>
+                    La siguiente linea del tiempo representa las frecuencias de los
+                    hashtags determinados
+                  </p>
+                </div>
+                <div className='d-flex justify-content-center text-secondary'>
+                  <Timeline/>
+                </div>
+
+              </div>
+              
               <div className='mt-5 mb-5'>
                 <div className='d-flex justify-content-center'>
                   <h1> Estados de la República </h1>
@@ -40,16 +59,16 @@ class Home extends React.Component{
                 <div className='d-flex justify-content-center text-secondary'>
                   <p>
                     En el siguiente mapa se muestran las emociones predominantes por estado.
-      
+
                   </p>
                 </div>
                 <WorldMap/>
               </div>
-      
-      
-      
+
+
+
               <div className='mt-5 mb-5'>
-      
+
                 <div className='d-flex justify-content-center'>
                   <h1> Emociones en redes sociales </h1>
                   </div>
@@ -62,13 +81,14 @@ class Home extends React.Component{
                 <div className='d-flex justify-content-center text-secondary'>
                   <EmotionalRadar/>
                 </div>
-      
+
               </div>
-      
-      
+
+
+
             </Container>
             <Footer/>
-            </div>            
+            </div>
         );
     }
 }
