@@ -1,4 +1,5 @@
 {
+  "homepage": "https://ricardojc.github.io/Mexico-COVID19/",
   "name": "covid19",
   "version": "0.1.0",
   "private": true,
@@ -16,6 +17,8 @@
     "recharts": "^1.8.5"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
