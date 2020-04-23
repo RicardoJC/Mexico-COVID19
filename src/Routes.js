@@ -6,7 +6,7 @@ import StatesVisualization from './StatesVisualization';
 const Routes = () => {
     return(
         <Switch>
-            <Route exact path='/' component={Home}/>
+            <Route path='/' component={Home}/>
             <Route path='/estados' component={StatesVisualization}/>
         </Switch>
     );
