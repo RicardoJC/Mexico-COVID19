@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
+import './map.css'
 
 
 /*
@@ -105,7 +106,12 @@ class WorldMap extends Component {
 
       const handleCountryClick = (data,countryIndex) => {
         console.log("Clicked on country: ", data);
+        d3.select('.nav_map').transition().duration(200).attr('opacity',9)
+        d3.select('.nav_map').html("<h6>"+data.properties.name+"</h6>")
+      }
 
+      const mouseOut = (data, countryIndex) => {
+        d3.select('.nav_map').transition().duration(500).attr('opacity',0)
       }
 
       const colorIntensity = pos =>{
@@ -131,11 +137,13 @@ class WorldMap extends Component {
          stroke="#000"
          strokeWidth={ 1 }
          onMouseOver = { () => handleCountryClick(d,i) }
+         onMouseOut = {() => mouseOut(d,i)}
          />);
 
          return(
 
-           <div className='d-flex justify-content-center'>
+           <div className='d-flex justify-content-center' id='map'>
+             <div className='nav_map'></div>
             <svg width={this.state.wSvg} height={this.state.hSvg}>
             {states}
             </svg>
