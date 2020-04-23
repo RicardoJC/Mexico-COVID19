@@ -4,41 +4,59 @@ import {
   PolarAngleAxis, PolarRadiusAxis,
 } from 'recharts';
 
-const data = [
-  {
-    subject: 'Alegría', A: 120, B: 110, fullMark: 150,
-  },
-  {
-    subject: 'Tristeza', A: 98, B: 130, fullMark: 150,
-  },
-  {
-    subject: 'Sorpresa', A: 86, B: 130, fullMark: 150,
-  },
-  {
-    subject: 'Desagrado', A: 99, B: 100, fullMark: 150,
-  },
-  {
-    subject: 'Miedo', A: 85, B: 90, fullMark: 150,
-  },
-  {
-    subject: 'Enojo', A: 65, B: 85, fullMark: 150,
-  },
-];
-
-
 class EmotionalRadar extends PureComponent {
 
+
+  constructor(props){
+    super(props)
+    this.state = {
+      error:null,
+      data:[],
+      isLoaded:false
+    }
+  }
+
+  componentDidMount(){
+    fetch("https://raw.githubusercontent.com/RicardoJC/Mexico-Datos-COVID19/master/home/radar.json")
+          .then(res => res.json())
+          .then(
+            (result) => {
+              this.setState({
+                isLoaded: true,
+                data: result
+              });
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+              this.setState({
+                isLoaded: true,
+                error
+              });
+            }
+          );
+  }
+
   render() {
-    return (
-      <RadarChart  cx={175} cy={175} outerRadius={120} width={350} height={450} data={data}>
-        <PolarGrid />
-        <PolarAngleAxis dataKey="subject" />
-        <PolarRadiusAxis angle={30} domain={[0, 150]} />
-        <Radar name="Cuentas verificadas" dataKey="A" stroke="#2387f3" fill="#2387f3" fillOpacity={0.6} />
-        <Radar name="Cuentas no verificadas" dataKey="B" stroke="#23f359" fill="#23f359" fillOpacity={0.6} />
-        <Legend />
-      </RadarChart>
-    );
+    const{error,isLoaded,data} = this.state
+    if(error){
+      return <div>Error al cargar el radar de emociones</div>
+    }else if(!isLoaded){
+      return <div>Cargando información...</div>
+    }else{
+      return (
+        <RadarChart  cx={175} cy={175} outerRadius={120} width={350} height={450} data={data}>
+          <PolarGrid />
+          <PolarAngleAxis dataKey="subject" />
+          <PolarRadiusAxis angle={30} domain={[0, 150]} />
+          <Radar name="Emociones en Twitter" dataKey="A" stroke="#2387f3" fill="#2387f3" fillOpacity={0.6} />
+          <Legend />
+        </RadarChart>
+      );
+    }
+
+
   }
 }
 

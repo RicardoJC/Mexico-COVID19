@@ -1,55 +1,132 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 
 class Cards extends React.Component{
 
+  constructor(props){
+    super(props)
+    this.state = {
+      error:null,
+      data:[],
+      isLoaded:false
+    }
+  }
+
+
+  componentDidMount(){
+    fetch("https://raw.githubusercontent.com/RicardoJC/Mexico-Datos-COVID19/master/home/tokens.json")
+          .then(res => res.json())
+          .then(
+            (result) => {
+              this.setState({
+                isLoaded: true,
+                data: result
+              });
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+              this.setState({
+                isLoaded: true,
+                error
+              });
+            }
+          );
+  }
+
+
+
+
+
+
   render(){
+    const {error,isLoaded,data} = this.state;
+    var hashtags = {t1:'',w1:'',t2:'',w2:'',t3:'',w3:''};
+    var mentions = {t1:'',w1:'',t2:'',w2:'',t3:'',w3:''};
+    var words = {t1:'',w1:'',t2:'',w2:'',t3:'',w3:''};
+    if(!error && isLoaded){
+      hashtags = data[0];
+      mentions = data[1];
+      words = data[2];
+      console.log('Nuevo' +hashtags);
+    }else{
+      console.log('ACA #:' + hashtags);
+    }
+
+
     return(
 
         <Row >
+        <Col className='d-flex justify-content-center'>
+        <Card style={{ width: '18rem', height:'13em' }}>
+          <Card.Body>
+          <Card.Title className="mb-2 text-muted ">Hashtags de hoy</Card.Title>
+          <div className="d-table justify-content-left">
+            <div className="d-table-cell font-weight-bold"><h2>{hashtags.t1}&nbsp;</h2></div>
+            <div className="d-table-cell text-muted">{hashtags.w1}</div>
+          </div>
+
+          <div className="d-table justify-content-left">
+            <div className="d-table-cell font-weight-bold"><h2>{hashtags.t2}&nbsp;</h2></div>
+            <div className="d-table-cell text-muted">{hashtags.w2}</div>
+          </div>
+
+          <div className="d-table justify-content-left">
+            <div className="d-table-cell font-weight-bold"><h2>{hashtags.t3}&nbsp;</h2></div>
+            <div className="d-table-cell text-muted">{hashtags.w3}</div>
+          </div>
+
+          </Card.Body>
+        </Card>
+        </Col>
+
           <Col className='d-flex justify-content-center'>
-          <Card style={{ width: '18rem' }}>
-            <Card.Body>
-              <Card.Title className="mb-2 ">Hashtags de hoy</Card.Title>
-              <Card.Text/>
-              <Card.Subtitle className="mb-2 text-muted"><h3 className="font-weight-bold">1.23k #Coronavirus</h3> </Card.Subtitle>
-              <Card.Subtitle className="mb-2 text-muted"><h4>1.34K #Covid19</h4></Card.Subtitle>
-              <Card.Subtitle className="mb-2 text-muted"><h5>1.12K #Gatell</h5></Card.Subtitle>
-            </Card.Body>
+          <Card style={{ width: '18rem', height:'13em' }}>
+          <Card.Body>
+            <Card.Title className="mb-2 text-muted ">Menciones de hoy</Card.Title>
+            <div className="d-table justify-content-left">
+              <div className="d-table-cell font-weight-bold"><h2>{mentions.t1}&nbsp;</h2></div>
+              <div className="d-table-cell text-muted">{mentions.w1}</div>
+            </div>
+
+            <div className="d-table justify-content-left">
+              <div className="d-table-cell font-weight-bold"><h2>{mentions.t2}&nbsp;</h2></div>
+              <div className="d-table-cell text-muted">{mentions.w2}</div>
+            </div>
+
+            <div className="d-table justify-content-left">
+              <div className="d-table-cell font-weight-bold"><h2>{mentions.t3}&nbsp;</h2></div>
+              <div className="d-table-cell text-muted">{mentions.w3}</div>
+            </div>
+          </Card.Body>
           </Card>
           </Col>
 
           <Col className='d-flex justify-content-center'>
-          <Card style={{ width: '18rem' }}>
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-              <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
-              </Card.Text>
-              <Card.Link href="#">Card Link</Card.Link>
-              <Card.Link href="#">Another Link</Card.Link>
-            </Card.Body>
-          </Card>
-          </Col>
+          <Card style={{ width: '18rem', height:'13em' }}>
+          <Card.Body>
+            <Card.Title className="mb-2 text-muted ">Palabras de hoy</Card.Title>
+            <div className="d-table justify-content-left">
+              <div className="d-table-cell font-weight-bold"><h2>{words.t1}&nbsp;</h2></div>
+              <div className="d-table-cell text-muted">{words.w1}</div>
+            </div>
 
-          <Col className='d-flex justify-content-center'>
-          <Card style={{ width: '18rem' }}>
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-              <Card.Text>
-                Some quick example text to build on the card title and make up the bulk of
-                the card's content.
-              </Card.Text>
-              <Card.Link href="#">Card Link</Card.Link>
-              <Card.Link href="#">Another Link</Card.Link>
-            </Card.Body>
+            <div className="d-table justify-content-left">
+              <div className="d-table-cell font-weight-bold"><h2>{words.t2}&nbsp;</h2></div>
+              <div className="d-table-cell text-muted">{words.w2}</div>
+            </div>
+
+            <div className="d-table justify-content-left">
+              <div className="d-table-cell font-weight-bold"><h2>{words.t3}&nbsp;</h2></div>
+              <div className="d-table-cell text-muted">{words.w3}</div>
+            </div>
+
+
+          </Card.Body>
           </Card>
           </Col>
         </Row>

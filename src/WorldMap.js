@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import worlddata from './world';
 import * as d3 from 'd3';
 
 
@@ -22,7 +19,10 @@ class WorldMap extends Component {
       wMap: 500, // Bien
       hMap: 600, // Bien
       wSvg: 1000, // Bien
-      hSvg: 600 //
+      hSvg: 600, //
+      error: null,
+      isLoaded: false,
+      data: []
     };
   }
 
@@ -30,6 +30,26 @@ class WorldMap extends Component {
   componentDidMount() {
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
+
+    fetch("https://raw.githubusercontent.com/RicardoJC/Mexico-Datos-COVID19/master/home/mexico.geojson")
+          .then(res => res.json())
+          .then(
+            (result) => {
+              this.setState({
+                isLoaded: true,
+                data: result.features
+              });
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+              this.setState({
+                isLoaded: true,
+                error
+              });
+            }
+          );
   }
 
   resize() {
@@ -68,48 +88,64 @@ class WorldMap extends Component {
 
 
   render() {
-     var w = this.state.wMap,h = this.state.hMap;
-     const projection = d3.geoMercator()
-     .center([-110, 22])
-     .translate([w / 2, h / 1.7])
-     .scale([w / .3]);
 
-     const handleCountryClick = (data,countryIndex) => {
-       console.log("Clicked on country: ", data);
+    const { error, isLoaded, data } = this.state;
 
-     }
+    if(error){
+      return <div className='d-flex justify-content-center'>Error al cargar el mapa</div>
+    }else if(!isLoaded){
+      return <div className='d-flex justify-content-center'>Cargando mapa...</div>
+    }else{
 
-     const colorIntensity = pos =>{
-       if(pos > 100){
-         return 0.8;
-       }else{
-         return 0.0;
-       }
-     }
+      var w = this.state.wMap,h = this.state.hMap;
+      const projection = d3.geoMercator()
+      .center([-110, 22])
+      .translate([w / 2, h / 1.7])
+      .scale([w / .3]);
 
+      const handleCountryClick = (data,countryIndex) => {
+        console.log("Clicked on country: ", data);
 
-     const pathGenerator = d3.geoPath().projection(projection);
-     const states = worlddata.features
-        .map((d,i) => <path
-        key={'path' + i}
-        d={pathGenerator(d)}
-        className='states'
-        fill={ `rgba(49,104,232,${ colorIntensity(d.properties.totales) })` }
-        stroke="#000"
-        strokeWidth={ 1 }
-        onMouseOver = { () => handleCountryClick(d,i) }
-        />);
+      }
 
-  return(
-
-    <div className='d-flex justify-content-center'>
-      <svg width={this.state.wSvg} height={this.state.hSvg}>
-        {states}
-        </svg>
-    </div>
+      const colorIntensity = pos =>{
+        if(pos > 100){
+          return 0.8;
+        }else if(pos > 50 && pos <= 100){
+          return 0.5;
+        }else if(pos > 25 && pos <= 50){
+          return 0.3;
+        }else{
+          return 0.1;
+        }
+      }
 
 
-  );}
+      const pathGenerator = d3.geoPath().projection(projection);
+      const states = data
+         .map((d,i) => <path
+         key={'path' + i}
+         d={pathGenerator(d)}
+         className='states'
+         fill={ `rgba(49,104,232,${ colorIntensity(d.properties.totales) })` }
+         stroke="#000"
+         strokeWidth={ 1 }
+         onMouseOver = { () => handleCountryClick(d,i) }
+         />);
+
+         return(
+
+           <div className='d-flex justify-content-center'>
+            <svg width={this.state.wSvg} height={this.state.hSvg}>
+            {states}
+            </svg>
+          </div>
+
+        );
+
+    }
+
+  }
 
 
 }
