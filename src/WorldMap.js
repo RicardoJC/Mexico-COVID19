@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import './map.css'
+import { select } from 'd3';
 
 
 /*
@@ -10,7 +11,6 @@ https://react-bootstrap.github.io/components/overlays/#popovers
 https://github.com/react-bootstrap/react-bootstrap/issues/1622
 https://www.w3schools.com/howto/howto_js_popup.asp
 */
-
 
 class WorldMap extends Component {
 
@@ -23,10 +23,11 @@ class WorldMap extends Component {
       hSvg: 600, //
       error: null,
       isLoaded: false,
-      data: []
+      data: [],
+      x: 0,
+      y: 0
     };
   }
-
 
   componentDidMount() {
     window.addEventListener("resize", this.resize.bind(this));
@@ -104,10 +105,10 @@ class WorldMap extends Component {
       .translate([w / 2, h / 1.7])
       .scale([w / .3]);
 
-      const handleCountryClick = (data,countryIndex) => {
+      const handleCountryClick = (e,data,countryIndex) => {
         console.log("Clicked on country: ", data);
         d3.select('.nav_map').transition().duration(200).attr('opacity',9)
-        d3.select('.nav_map').html("<h6>"+data.properties.name+"</h6>")
+        d3.select('.nav_map').html("<h6>"+data.properties.name+"</h6>").style('left',(e.pageX) + 'px').style('top',(e.pageY-10) + 'px')
       }
 
       const mouseOut = (data, countryIndex) => {
@@ -136,7 +137,7 @@ class WorldMap extends Component {
          fill={ `rgba(49,104,232,${ colorIntensity(d.properties.totales) })` }
          stroke="#000"
          strokeWidth={ 1 }
-         onMouseOver = { () => handleCountryClick(d,i) }
+         onMouseOver = { (e) => handleCountryClick(e,d,i) }
          onMouseOut = {() => mouseOut(d,i)}
          />);
 
