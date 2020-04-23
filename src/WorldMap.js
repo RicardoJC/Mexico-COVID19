@@ -107,12 +107,15 @@ class WorldMap extends Component {
 
       const handleCountryClick = (e,data,countryIndex) => {
         console.log("Clicked on country: ", data);
-        d3.select('.nav_map').transition().duration(200).attr('opacity',9)
+        d3.select('.nav_map').style('visibility','')
+        d3.select('.nav_map').style('visibility','visible')
+        d3.select('.nav_map').transition().duration(200).attr('opacity',0.9)
         d3.select('.nav_map').html("<h6>"+data.properties.name+"</h6>").style('left',(e.pageX) + 'px').style('top',(e.pageY-10) + 'px')
       }
 
       const mouseOut = (data, countryIndex) => {
         d3.select('.nav_map').transition().duration(500).attr('opacity',0)
+        d3.select('.nav_map').style('visibility','hidden')
       }
 
       const colorIntensity = pos =>{
