@@ -24,8 +24,7 @@ class WorldMap extends Component {
       error: null,
       isLoaded: false,
       data: [],
-      x: 0,
-      y: 0
+      statistics:[]
     };
   }
 
@@ -41,6 +40,27 @@ class WorldMap extends Component {
                 isLoaded: true,
                 data: result.features
               });
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+              this.setState({
+                isLoaded: true,
+                error
+              });
+            }
+          );
+    
+    fetch("https://raw.githubusercontent.com/RicardoJC/Mexico-Datos-COVID19/master/home/mexico.geojson")
+          .then(res => res.json())
+          .then(
+            (result) => {
+              this.setState({
+                isLoaded: true,
+                statistics: result.features
+              });
+              console.log('Se obtuvieron estadisticas por estado')
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow
@@ -110,7 +130,7 @@ class WorldMap extends Component {
         d3.select('.nav_map').style('visibility','')
         d3.select('.nav_map').style('visibility','visible')
         d3.select('.nav_map').transition().duration(200).attr('opacity',0.9)
-        d3.select('.nav_map').html("<h6>"+data.properties.name+"</h6>").style('left',(e.pageX) + 'px').style('top',(e.pageY-10) + 'px')
+        d3.select('.nav_map').html("<h4>"+data.properties.name+"</h4> <p>Total de tweets: "+this.state.statistics[countryIndex].properties.totales+"</p> <p>Tweets sobre Covid19: "+this.state.statistics[countryIndex].properties.activos+"</p>").style('left',(e.pageX) + 'px').style('top',(e.pageY-10) + 'px')
       }
 
       const mouseOut = (data, countryIndex) => {
