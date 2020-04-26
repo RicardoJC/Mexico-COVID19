@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0569ee7d27cd0c598ec03a76a9bca440",
+    "revision": "60d9a8c0431a890e6d694b335405f54f",
     "url": "/Mexico-COVID19/index.html"
   },
   {
-    "revision": "3aa6fce314a8cb6fee20",
+    "revision": "ac33d28ea0a77e97d2cc",
     "url": "/Mexico-COVID19/static/css/2.de424728.chunk.css"
   },
   {
-    "revision": "56e2bda9f2e82868ee58",
+    "revision": "2aa968f9507ac4c492f0",
     "url": "/Mexico-COVID19/static/css/main.e4352fae.chunk.css"
   },
   {
-    "revision": "3aa6fce314a8cb6fee20",
-    "url": "/Mexico-COVID19/static/js/2.f79abe7f.chunk.js"
+    "revision": "ac33d28ea0a77e97d2cc",
+    "url": "/Mexico-COVID19/static/js/2.36680f9e.chunk.js"
   },
   {
     "revision": "ca3cfcda77dc9f4f71fda9fdfcf14fb0",
-    "url": "/Mexico-COVID19/static/js/2.f79abe7f.chunk.js.LICENSE.txt"
+    "url": "/Mexico-COVID19/static/js/2.36680f9e.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "56e2bda9f2e82868ee58",
-    "url": "/Mexico-COVID19/static/js/main.f4afead2.chunk.js"
+    "revision": "2aa968f9507ac4c492f0",
+    "url": "/Mexico-COVID19/static/js/main.8220a90b.chunk.js"
   },
   {
     "revision": "64d2012e3267e430e468",
