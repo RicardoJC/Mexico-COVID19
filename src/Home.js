@@ -38,12 +38,19 @@ class Home extends React.Component{
               <div className='mt-5 mb-5'>
 
                 <div className='d-flex justify-content-center'>
-                  <h1> Linea del tiempo de hashtags </h1>
+                  <h1> Linea del tiempo de palabras clave </h1>
                   </div>
                   <div className='d-flex justify-content-center text-secondary'>
                   <p>
-                    La siguiente linea del tiempo representa las frecuencias de los
-                    hashtags determinados
+                    La siguiente linea del tiempo presenta 6 palabras clave dentro de los
+                    tweets obtenidos en un fin de semana.
+                    Las primeras 2 palabras son acerca del virus, para conocer cómo los
+                    usuarios general conversación en twitter.
+                    Para el caso de <b>HLGatell y lopezobrador_</b> se
+                     buscaron menciones a sus cuentas oficiales. Esto para conocer cómo
+                    se van mencionando a medida que pasa el tiempo y el virus avanza.
+                    Finalmente, se agregan las palabras de <b>ansiedad y depresión</b> para
+                    visualizar cómo afecta a la sociedad la cuarentena.
                   </p>
                 </div>
                 <div className='d-flex justify-content-center text-secondary'>
@@ -51,7 +58,7 @@ class Home extends React.Component{
                 </div>
 
               </div>
-              
+
               <div className='mt-5 mb-5'>
                 <div className='d-flex justify-content-center'>
                   <h1> Estados de la República </h1>

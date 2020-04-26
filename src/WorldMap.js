@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import './map.css'
-import { select } from 'd3';
 
 
 /*
@@ -51,7 +50,7 @@ class WorldMap extends Component {
               });
             }
           );
-    
+
     fetch("https://raw.githubusercontent.com/RicardoJC/Mexico-Datos-COVID19/master/home/mexico.geojson")
           .then(res => res.json())
           .then(
@@ -130,7 +129,9 @@ class WorldMap extends Component {
         d3.select('.nav_map').style('visibility','')
         d3.select('.nav_map').style('visibility','visible')
         d3.select('.nav_map').transition().duration(200).attr('opacity',0.9)
-        d3.select('.nav_map').html("<h4>"+data.properties.name+"</h4> <p>Total de tweets: "+this.state.statistics[countryIndex].properties.totales+"</p> <p>Tweets sobre Covid19: "+this.state.statistics[countryIndex].properties.activos+"</p>").style('left',(e.pageX) + 'px').style('top',(e.pageY-10) + 'px')
+        d3.select('.nav_map').html("<h5>" + data.properties.name + "</h5>" +
+        "<span class='font-weight-light'>Total de tweets: <br/> <span/><span class='font-weight-bolder'>"+this.state.statistics[countryIndex].properties.totales+"</span><br/>" +
+        "<span class='font-weight-light'>Tweets sobre Covid19: <br/><span/><span class='font-weight-bolder'>"+this.state.statistics[countryIndex].properties.activos+"</span>").style('left',(e.pageX) + 'px').style('top',(e.pageY-10) + 'px')
       }
 
       const mouseOut = (data, countryIndex) => {

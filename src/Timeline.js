@@ -2,8 +2,8 @@ import React, { PureComponent } from 'react';
 import {
   LineChart, Line, XAxis, YAxis,
   CartesianGrid, Tooltip, Legend,
-  ResponsiveContainer,
-} from 'recharts';
+  ResponsiveContainer,ReferenceLine
+  } from 'recharts';
 
 
 class Timeline extends PureComponent {
@@ -58,13 +58,17 @@ class Timeline extends PureComponent {
           }}
           >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+          <XAxis dataKey="day" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="#coronavirus" stroke="#8884d8" activeDot={{ r: 8 }} />
-          <Line type="monotone" dataKey="#covid19" stroke="#82ca9d" />
-          <Line type="monotone" dataKey="#fase1" stroke="#445932" />
+          <ReferenceLine x="2020-03-09" label="Evento importante" stroke="red" />
+          <Line type="natural" dataKey="coronavirus" stroke="#00e676" strokeWidth='1' animationDuration='4000' />
+          <Line type="natural" dataKey="covid19" stroke="#1b5e20" strokeWidth='1' animationDuration='3500'/>
+          <Line type="natural" dataKey="@HLGatell" stroke="#f44336" strokeWidth='1' animationDuration='3000'/>
+          <Line type="natural" dataKey="@lopezobrador_" stroke="#b71c1c" strokeWidth='1' animationDuration='2500'/>
+          <Line type="natural" dataKey="ansiedad" stroke="#ffab00" strokeWidth='1' animationDuration='2000'/>
+          <Line type="natural" dataKey="depresion" stroke="#e65100" strokeWidth='1' animationDuration='1500'/>
         </LineChart>
         </ResponsiveContainer>
 
