@@ -22,6 +22,11 @@ class NavBar extends React.Component{
               <Nav.Link eventKey={1} href="#about">
                 Acerca de
                 </Nav.Link>*/
+                <Nav.Link>Análisis de emociones</Nav.Link>
+                
+                }
+                {
+                  <Nav.Link>Monitor de sntomas </Nav.Link>
                 }
             </Nav>
           </Navbar.Collapse>
