@@ -15,6 +15,7 @@ class NavBar extends React.Component{
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
             {//<Nav.Link href='/estados'>Estados</Nav.Link>
+            <Nav.Link href='/sentimientos'>Análisis de sentimientos</Nav.Link>
             }
             </Nav>
             <Nav>
@@ -22,11 +23,6 @@ class NavBar extends React.Component{
               <Nav.Link eventKey={1} href="#about">
                 Acerca de
                 </Nav.Link>*/
-                <Nav.Link>Análisis de emociones</Nav.Link>
-                
-                }
-                {
-                  <Nav.Link>Monitor de sntomas </Nav.Link>
                 }
             </Nav>
           </Navbar.Collapse>

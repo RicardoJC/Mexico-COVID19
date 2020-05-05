@@ -1,13 +1,13 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import Home from './Home';
-import StatesVisualization from './StatesVisualization';
+import SentimentAnalysis from './SentimentAnalysis';
 
 const Routes = () => {
     return(
         <Switch>
-            <Route path='/' component={Home}/>
-            <Route path='/estados' component={StatesVisualization}/>
+            <Route exact path='/' component={Home}/>
+            <Route path='/sentimientos' component={SentimentAnalysis}/>
         </Switch>
     );
 }
