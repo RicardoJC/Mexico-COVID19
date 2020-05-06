@@ -17,6 +17,9 @@ class NavBar extends React.Component{
             {//<Nav.Link href='/estados'>Estados</Nav.Link>
             <Nav.Link href='/sentimientos'>Análisis de sentimientos</Nav.Link>
             }
+            {
+              <Nav.Link href='/sintomas'>Monitor de síntomas</Nav.Link>
+            }
             </Nav>
             <Nav>
               {/*

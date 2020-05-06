@@ -2,10 +2,10 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import NavBar from './NavBar';
 import Footer from './Footer';
+import MexicoCityMap from './MexicoCityMap';
 import WorldMap from './WorldMap';
-import EmotionalRadar from './EmotionalRadar';
 
-class SentimentAnalysis extends React.Component{
+class SymptomsMonitor extends React.Component{
     render(){
         return(
             <div>
@@ -13,14 +13,9 @@ class SentimentAnalysis extends React.Component{
                 <Container className='mt-5 mb-5'>
                     <div className ='mt-5 mb-5'>
                         <div className='d-flex justify-content-center'>
-                            <h1>Análisis de emociones</h1>
+                            <h1>Monitor de síntomas</h1>
                         </div>
-                        <div className ='mt-5 mb-5'>
-                            <WorldMap/>
-                        </div>
-                        <div className='d-flex justify-content-center text-secondary'>
-                            <EmotionalRadar/>
-                        </div>
+                        <MexicoCityMap/>                        
                     </div>
                 </Container>
                 <Footer/>
@@ -29,4 +24,4 @@ class SentimentAnalysis extends React.Component{
     }
 }
 
-export default SentimentAnalysis;
+export default SymptomsMonitor;
