@@ -99,9 +99,9 @@ class MexicoCityMap extends Component {
 
       var w = this.state.wMap,h = this.state.hMap;
       const projection = d3.geoMercator()
-      .center([-110, 22])
-      .translate([w / 2, h / 1.7])
-      .scale([w / .3]);
+      .center([-99.12, 19.00])
+      .translate([w/1, h / 0.94])
+      .scale([115*w]);
 
       const handleCountryClick = (e,data,countryIndex) => {
         console.log("Clicked on country: ", data);
@@ -147,7 +147,7 @@ class MexicoCityMap extends Component {
          return(
 
            <div className='d-flex justify-content-center' id='map'>
-             <div className='nav_map'></div>
+             <div className='nav_map '></div>
             <svg width={this.state.wSvg} height={this.state.hSvg}>
             {states}
             </svg>
