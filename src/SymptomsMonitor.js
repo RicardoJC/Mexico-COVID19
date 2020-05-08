@@ -3,9 +3,9 @@ import Container from 'react-bootstrap/Container';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import MexicoCityMap from './MexicoCityMap';
-import WorldMap from './WorldMap';
 
 class SymptomsMonitor extends React.Component{
+
     render(){
         return(
             <div>
@@ -15,7 +15,7 @@ class SymptomsMonitor extends React.Component{
                         <div className='d-flex justify-content-center'>
                             <h1>Monitor de síntomas</h1>
                         </div>
-                        <MexicoCityMap/>                        
+                        <MexicoCityMap/>                     
                     </div>
                 </Container>
                 <Footer/>
