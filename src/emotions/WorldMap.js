@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
-import './map.css'
+
 
 
 /*
@@ -11,7 +11,7 @@ https://github.com/react-bootstrap/react-bootstrap/issues/1622
 https://www.w3schools.com/howto/howto_js_popup.asp
 */
 
-class MexicoCityMap extends Component {
+class WorldMap extends Component {
 
   constructor(props){
     super(props);
@@ -31,7 +31,7 @@ class MexicoCityMap extends Component {
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
 
-    fetch("https://raw.githubusercontent.com/jgermanob/Mexico-Covid19-Datos/master/alcaldias.geojson")
+    fetch("https://raw.githubusercontent.com/RicardoJC/Mexico-Datos-COVID19/master/home/mexico.geojson")
           .then(res => res.json())
           .then(
             (result) => {
@@ -39,6 +39,27 @@ class MexicoCityMap extends Component {
                 isLoaded: true,
                 data: result.features
               });
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+              this.setState({
+                isLoaded: true,
+                error
+              });
+            }
+          );
+
+    fetch("https://raw.githubusercontent.com/RicardoJC/Mexico-Datos-COVID19/master/home/mexico.geojson")
+          .then(res => res.json())
+          .then(
+            (result) => {
+              this.setState({
+                isLoaded: true,
+                statistics: result.features
+              });
+              console.log('Se obtuvieron estadisticas por estado')
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow
@@ -61,7 +82,7 @@ class MexicoCityMap extends Component {
         hSvg: 600 //
       });
     }else if(window.innerWidth <= 1200 && window.innerWidth >= 990){
-        this.setState({
+      this.setState({
         wMap: 400, // Bien
         hMap: 500, // Bien
         wSvg: 800, // Bien
@@ -99,18 +120,18 @@ class MexicoCityMap extends Component {
 
       var w = this.state.wMap,h = this.state.hMap;
       const projection = d3.geoMercator()
-      .center([-99.12, 19.00])
-      .translate([w/1, h / 0.94])
-      .scale([115*w]);
+      .center([-110, 22])
+      .translate([w / 2, h / 1.7])
+      .scale([w / .3]);
 
       const handleCountryClick = (e,data,countryIndex) => {
         console.log("Clicked on country: ", data);
         d3.select('.nav_map').style('visibility','')
         d3.select('.nav_map').style('visibility','visible')
         d3.select('.nav_map').transition().duration(200).attr('opacity',0.9)
-        d3.select('.nav_map').html("<h5>" + data.properties.nomgeo + "</h5>" +
-        "<span class='font-weight-light'>Total de tweets: <br/> <span/><span class='font-weight-bolder'>Hello, world</span><br/>" +
-        "<span class='font-weight-light'>Tweets sobre Covid19: <br/><span/><span class='font-weight-bolder'>Hola mundo</span>").style('left',(e.pageX) + 'px').style('top',(e.pageY-10) + 'px')
+        d3.select('.nav_map').html("<h5>" + data.properties.name + "</h5>" +
+        "<span class='font-weight-light'>Total de tweets: <br/> <span/><span class='font-weight-bolder'>"+this.state.statistics[countryIndex].properties.totales+"</span><br/>" +
+        "<span class='font-weight-light'>Tweets sobre Covid19: <br/><span/><span class='font-weight-bolder'>"+this.state.statistics[countryIndex].properties.activos+"</span>").style('left',(e.pageX) + 'px').style('top',(e.pageY-10) + 'px')
       }
 
       const mouseOut = (data, countryIndex) => {
@@ -147,7 +168,7 @@ class MexicoCityMap extends Component {
          return(
 
            <div className='d-flex justify-content-center' id='map'>
-             <div className='nav_map '></div>
+             <div className='nav_map'></div>
             <svg width={this.state.wSvg} height={this.state.hSvg}>
             {states}
             </svg>
@@ -161,4 +182,4 @@ class MexicoCityMap extends Component {
 
 
 }
-export default MexicoCityMap;
+export default WorldMap;

@@ -1,17 +1,14 @@
 import React from 'react';
-import NavBar from './NavBar';
 import WorldMap from './WorldMap';
 import Cards from './Cards';
 import EmotionalRadar from './EmotionalRadar';
 import Timeline from './Timeline'
-import Footer from './Footer'
 import Container from 'react-bootstrap/Container';
 
 class Home extends React.Component{
     render(){
         return(
             <div>
-            <NavBar/>
             <Container className='mt-5 mb-5'>
 
               <div>
@@ -94,7 +91,6 @@ class Home extends React.Component{
 
 
             </Container>
-            <Footer/>
             </div>
         );
     }
