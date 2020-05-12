@@ -22,10 +22,10 @@ class NavBar extends React.Component{
             }
             </Nav>
             <Nav>
-              {/*
-              <Nav.Link eventKey={1} href="#about">
+              {
+              <Nav.Link href="/about">
                 Acerca de
-                </Nav.Link>*/
+                </Nav.Link>
                 }
             </Nav>
           </Navbar.Collapse>
