@@ -5,6 +5,14 @@ import EmotionalRadar from './EmotionalRadar';
 import Timeline from './Timeline'
 import Container from 'react-bootstrap/Container';
 
+
+const styles = {
+  updateDate:{
+    marginBottom:'10px'
+  }
+};
+
+
 class Home extends React.Component{
     render(){
         return(
@@ -14,7 +22,9 @@ class Home extends React.Component{
               <div>
                 <h1>Análisis de Twitter para COVID-19</h1>
                 <p>
-                  A continuación se muestran los resultados de un análisis de mensajes de twitter
+                  Este es un sistema automático de vigilancia de COVID19 mediante Twitter.
+                  Se busca evaluar el comportamiento de las personas, estados de ánimo, la popularidad
+                  de las medidas del tomadas por el gobierno y síntomas de coronavirus.
                 </p>
               </div>
 
@@ -22,9 +32,12 @@ class Home extends React.Component{
                 <div className='d-flex justify-content-center'>
                   <h1> Palabras clave </h1>
                 </div>
+                <div style = {styles.updateDate} className='d-flex justify-content-center font-weight-lighter'>
+                  <span>Última actualización: Pendiente</span>
+                </div>
                 <div className='d-flex justify-content-center text-secondary'>
                   <p>
-                    Las siguientes palabras clave corresponden a un análisis cuantitavo que considera
+                    Las siguientes palabras clave corresponden a un análisis cuantitativo que considera
                     3 tipos de tokens: (#) Hashtag, (@) Mención y palabra en general
                   </p>
                 </div>
@@ -36,8 +49,11 @@ class Home extends React.Component{
 
                 <div className='d-flex justify-content-center'>
                   <h1> Linea del tiempo de palabras clave </h1>
-                  </div>
-                  <div className='d-flex justify-content-center text-secondary'>
+                </div>
+                <div style = {styles.updateDate} className='d-flex justify-content-center font-weight-lighter'>
+                  <span>Última actualización: 12 mayo 2020 @ 01:45:00 hrs.</span>
+                </div>
+                <div className='d-flex justify-content-center text-secondary'>
                   <p>
                     La siguiente linea del tiempo presenta 6 palabras clave dentro de los
                     tweets obtenidos en un fin de semana.
@@ -60,6 +76,9 @@ class Home extends React.Component{
                 <div className='d-flex justify-content-center'>
                   <h1> Estados de la República </h1>
                 </div>
+                <div style = {styles.updateDate} className='d-flex justify-content-center font-weight-lighter'>
+                  <span>Última actualización: Pendiente</span>
+                </div>
                 <div className='d-flex justify-content-center text-secondary'>
                   <p>
                     En el siguiente mapa se muestran las emociones predominantes por estado.
@@ -75,6 +94,9 @@ class Home extends React.Component{
 
                 <div className='d-flex justify-content-center'>
                   <h1> Emociones en redes sociales </h1>
+                  </div>
+                  <div style = {styles.updateDate} className='d-flex justify-content-center font-weight-lighter'>
+                    <span>Última actualización: Pendiente</span>
                   </div>
                   <div className='d-flex justify-content-center text-secondary'>
                   <p>
