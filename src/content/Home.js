@@ -51,7 +51,7 @@ class Home extends React.Component{
                   <h1> Linea del tiempo de palabras clave </h1>
                 </div>
                 <div style = {styles.updateDate} className='d-flex justify-content-center font-weight-lighter'>
-                  <span>Última actualización: 12 mayo 2020 @ 01:45:00 hrs.</span>
+                  <span>Última actualización: 13 mayo 2020 @ 09:21:41 hrs.</span>
                 </div>
                 <div className='d-flex justify-content-center text-secondary'>
                   <p>

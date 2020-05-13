@@ -16,11 +16,10 @@ class App extends React.PureComponent {
       <NavBar/>
       <Switch>
           <Route exact path='/Mexico-COVID19' component={Home}/>
-          {/*
-          <Route path='/sentimientos' component={SentimentAnalysis}/>
-          <Route path='/sintomas' component={SymptomsMonitor}/>
-          <Route path='/about' component={About}/>
-          */}
+          <Route path='/Mexico-COVID19/sentimientos' component={SentimentAnalysis}/>
+          <Route path='/Mexico-COVID19/sintomas' component={SymptomsMonitor}/>
+          <Route path='/Mexico-COVID19/about' component={About}/>
+
       </Switch>
       <Footer/>
       </div>
