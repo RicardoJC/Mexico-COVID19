@@ -15,7 +15,7 @@ class App extends React.PureComponent {
       <div>
       <NavBar/>
       <Switch>
-          <Route exact path={process.env.PUBLIC_URL + '/'} component={Home}/>
+          <Route exact path={'/'} component={Home}/>
           <Route path='/sentimientos' component={SentimentAnalysis}/>
           <Route path='/sintomas' component={SymptomsMonitor}/>
           <Route path='/about' component={About}/>
