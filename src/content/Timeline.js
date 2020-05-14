@@ -6,6 +6,17 @@ import {
   } from 'recharts';
 
 
+const styles = {
+  chart:{
+    flex: 1,
+    width: 0
+  },
+  updateDate:{
+    marginBottom:'10px'
+  }
+};
+
+
 class Timeline extends PureComponent {
 
   constructor(props){
@@ -13,7 +24,8 @@ class Timeline extends PureComponent {
     this.state = {
       error: null,
       isLoaded: false,
-      data: []
+      data: [],
+      time:''
     };
   }
 
@@ -24,7 +36,8 @@ class Timeline extends PureComponent {
             (result) => {
               this.setState({
                 isLoaded: true,
-                data: result
+                data: result.data,
+                time: result.time,
               });
             },
             // Note: it's important to handle errors here
@@ -42,7 +55,7 @@ class Timeline extends PureComponent {
 
 
   render() {
-    const { error, isLoaded, data } = this.state;
+    const { error, isLoaded, data, time } = this.state;
     if(error){
         return <div>-- Por el momento no se puede mostrar esta gráfica --</div>;
     }else if(!isLoaded){
@@ -50,11 +63,15 @@ class Timeline extends PureComponent {
     }else{
       return (
 
-        <ResponsiveContainer width="95%" height={400}>
+        <div style={styles.chart} >
+          <div style={styles.updateDate} className='d-flex justify-content-center font-weight-lighter'>
+            <span>Última actualización: {time}</span>
+          </div>
+        <ResponsiveContainer width="99%" height={400}>
         <LineChart
           data={data}
           margin={{
-            top: 5, right: 30, left: 20, bottom: 5,
+            top: 5, right: 20, left: 20, bottom: 5,
           }}
           >
           <CartesianGrid strokeDasharray="3 3" />
@@ -71,6 +88,8 @@ class Timeline extends PureComponent {
           <Line type="natural" dataKey="depresion" stroke="#e65100" strokeWidth='1' animationDuration='1500'/>
         </LineChart>
         </ResponsiveContainer>
+        </div>
+
 
 
       );

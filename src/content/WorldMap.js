@@ -166,13 +166,18 @@ class WorldMap extends Component {
          />);
 
          return(
-
+           <div>
+           <div className='d-flex justify-content-center font-weight-lighter'>
+             <span>Última actualización: Pendiente</span>
+           </div>
            <div className='d-flex justify-content-center' id='map'>
              <div className='nav_map'></div>
-            <svg width={this.state.wSvg} height={this.state.hSvg}>
-            {states}
-            </svg>
-          </div>
+             <svg width={this.state.wSvg} height={this.state.hSvg}>
+             {states}
+             </svg>
+           </div>
+           </div>
+
 
         );
 

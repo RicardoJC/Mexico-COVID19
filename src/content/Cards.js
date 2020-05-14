@@ -3,6 +3,12 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+const styles = {
+  updateDate:{
+    marginBottom:'10px'
+  }
+};
+
 
 class Cards extends React.Component{
 
@@ -11,6 +17,7 @@ class Cards extends React.Component{
     this.state = {
       error:null,
       data:[],
+      time:'',
       isLoaded:false
     }
   }
@@ -23,7 +30,8 @@ class Cards extends React.Component{
             (result) => {
               this.setState({
                 isLoaded: true,
-                data: result
+                data: result.data,
+                time:result.time
               });
             },
             // Note: it's important to handle errors here
@@ -44,7 +52,7 @@ class Cards extends React.Component{
 
 
   render(){
-    const {error,isLoaded,data} = this.state;
+    const {error,isLoaded,data,time} = this.state;
     var hashtags = {t1:'',w1:'',t2:'',w2:'',t3:'',w3:''};
     var mentions = {t1:'',w1:'',t2:'',w2:'',t3:'',w3:''};
     var words = {t1:'',w1:'',t2:'',w2:'',t3:'',w3:''};
@@ -52,14 +60,14 @@ class Cards extends React.Component{
       hashtags = data[0];
       mentions = data[1];
       words = data[2];
-      console.log('Nuevo' +hashtags);
-    }else{
-      console.log('ACA #:' + hashtags);
     }
-
 
     return(
 
+      <div>
+      <div style={styles.updateDate} className='d-flex justify-content-center font-weight-lighter'>
+        <span>Última actualización: {time}</span>
+      </div>
         <Row >
         <Col className='d-flex justify-content-center'>
         <Card style={{ width: '18rem', height:'13em' }}>
@@ -130,6 +138,8 @@ class Cards extends React.Component{
           </Card>
           </Col>
         </Row>
+      </div>
+
 
     );
   }
