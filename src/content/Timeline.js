@@ -81,11 +81,11 @@ class Timeline extends PureComponent {
           <Legend />
           <ReferenceLine x="2020-04-21" label="Fase 3" stroke="red" />
           <Line type="natural" dataKey="coronavirus" stroke="#00e676" strokeWidth='1' animationDuration='4000' />
-          <Line type="natural" dataKey="covid19" stroke="#1b5e20" strokeWidth='1' animationDuration='3500'/>
+          <Line type="natural" dataKey="quedateencasa" stroke="#1b5e20" strokeWidth='1' animationDuration='3500'/>
           <Line type="natural" dataKey="@HLGatell" stroke="#f44336" strokeWidth='1' animationDuration='3000'/>
           <Line type="natural" dataKey="@lopezobrador_" stroke="#b71c1c" strokeWidth='1' animationDuration='2500'/>
-          <Line type="natural" dataKey="ansiedad" stroke="#ffab00" strokeWidth='1' animationDuration='2000'/>
-          <Line type="natural" dataKey="depresion" stroke="#e65100" strokeWidth='1' animationDuration='1500'/>
+          <Line type="natural" dataKey="gripa" stroke="#ffab00" strokeWidth='1' animationDuration='2000'/>
+          <Line type="natural" dataKey="neumonia" stroke="#e65100" strokeWidth='1' animationDuration='1500'/>
         </LineChart>
         </ResponsiveContainer>
         </div>
