@@ -51,7 +51,7 @@ class Home extends React.Component{
                      buscaron menciones a sus cuentas oficiales. Esto para conocer cómo
                     se van mencionando a medida que pasa el tiempo y el virus avanza.
                     Finalmente, se agregan las palabras de <b>gripa y neumonía</b> para conocer la frecuencia
-                    de estas enfermedades en los mensajes cortos. 
+                    de estas enfermedades en los mensajes cortos.
                   </p>
                 </div>
                 <div className='d-flex justify-content-center text-secondary'>
@@ -66,9 +66,17 @@ class Home extends React.Component{
                 </div>
                 <div className='d-flex justify-content-center text-secondary'>
                   <p>
-                    En el siguiente mapa se muestran las emociones predominantes por estado.
-
+                    En el siguiente mapa se muestran el <b>Top 3 Hashtags</b> con el total de tweets que hablan
+                    acerca del tema de COVID19 por cada estado.
+                    La intensidad de color está definida por <b>la cantidad de tweets que se generan en la región</b>:
+                    <ul>
+                      <li>x &gt; 25000  <b>Demasiado</b> número de menciones </li>
+                      <li> 15000 &gt; x &gt; 25000  <b>Mucho</b> número de menciones</li>
+                      <li> 5000 &gt; x &gt; 2500  <b>Mediano</b> número de menciones </li>
+                      <li> 5000 &lt; x   <b>Poco</b> número de menciones </li>
+                    </ul>
                   </p>
+
                 </div>
                 <WorldMap/>
               </div>
