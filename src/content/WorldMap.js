@@ -23,7 +23,7 @@ class WorldMap extends Component {
       error: null,
       isLoaded: false,
       data: [],
-      time: '',
+      time: 'Pendiente',
     };
   }
 

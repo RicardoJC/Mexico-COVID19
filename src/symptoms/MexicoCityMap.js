@@ -22,6 +22,7 @@ class MexicoCityMap extends Component {
       error: null,
       isLoaded: false,
       data: [],
+      time: 'Pendiente',
       statistics:[]
     };
   }
@@ -30,13 +31,14 @@ class MexicoCityMap extends Component {
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
 
-    fetch("https://raw.githubusercontent.com/jgermanob/Mexico-Covid19-Datos/master/alcaldias.geojson")
+    fetch("https://raw.githubusercontent.com/RicardoJC/Mexico-Datos-COVID19/master/symptoms/alcaldias.json")
           .then(res => res.json())
           .then(
             (result) => {
               this.setState({
                 isLoaded: true,
-                data: result.features
+                data: result.features,
+                time: result.time
               });
             },
             // Note: it's important to handle errors here
@@ -88,7 +90,7 @@ class MexicoCityMap extends Component {
 
   render() {
 
-    const { error, isLoaded, data } = this.state;
+    const { error, isLoaded, data, time } = this.state;
 
     if(error){
       return <div className='d-flex justify-content-center'>Error al cargar el mapa</div>
@@ -102,14 +104,14 @@ class MexicoCityMap extends Component {
       .translate([w/1, h / 0.94])
       .scale([115*w]);
 
-      const handleCountryClick = (e,data,countryIndex) => {
+      const handleCountryClick = (e,data,stateIndex) => {
         console.log("Clicked on country: ", data);
         d3.select('.nav_map').style('visibility','')
         d3.select('.nav_map').style('visibility','visible')
         d3.select('.nav_map').transition().duration(200).attr('opacity',0.9)
         d3.select('.nav_map').html("<h5>" + data.properties.nomgeo + "</h5>" +
-        "<span class='font-weight-light'>Total de tweets: <br/> <span/><span class='font-weight-bolder'>Hello, world</span><br/>" +
-        "<span class='font-weight-light'>Tweets sobre Covid19: <br/><span/><span class='font-weight-bolder'>Hola mundo</span>").style('left',(e.pageX) + 'px').style('top',(e.pageY-10) + 'px')
+        "<span class='font-weight-light'>Síntomas COVID19: <br/> <span/><span class='font-weight-bolder'>" + this.state.data[stateIndex].properties.data.sintomas + "</span><br/>" +
+        "<span class='font-weight-light'>Síntomas mentales: <br/><span/><span class='font-weight-bolder'>" + this.state.data[stateIndex].properties.data.mentales + "</span>").style('left',(e.pageX) + 'px').style('top',(e.pageY-10) + 'px')
       }
 
       const mouseOut = (data, countryIndex) => {
@@ -117,15 +119,13 @@ class MexicoCityMap extends Component {
         d3.select('.nav_map').style('visibility','hidden')
       }
 
-      const colorIntensity = pos =>{
-        if(pos > 100){
-          return 0.8;
-        }else if(pos > 50 && pos <= 100){
+      const color = pos =>{
+        var covid = pos.sintomas;
+        var mental = pos.mentales;
+        if (covid > mental){
           return 0.5;
-        }else if(pos > 25 && pos <= 50){
-          return 0.3;
         }else{
-          return 0.1;
+          return 0.3;
         }
       }
 
@@ -136,7 +136,7 @@ class MexicoCityMap extends Component {
          key={'path' + i}
          d={pathGenerator(d)}
          className='states'
-         fill={ `rgba(49,104,232,${ colorIntensity(d.properties.totales) })` }
+         fill={ `rgba(49,104,232,${ color(d.properties.data) })` }
          stroke="#000"
          strokeWidth={ 1 }
          onMouseOver = { (e) => handleCountryClick(e,d,i) }
@@ -145,12 +145,19 @@ class MexicoCityMap extends Component {
 
          return(
 
-           <div className='d-flex justify-content-center' id='map'>
-             <div className='nav_map '></div>
-            <svg width={this.state.wSvg} height={this.state.hSvg}>
-            {states}
-            </svg>
-          </div>
+           <div>
+              <div className='d-flex justify-content-center font-weight-lighter'>
+                <span>Última actualización: {time}</span>
+              </div>
+              <div className='d-flex justify-content-center' id='map'>
+                <div className='nav_map '></div>
+                <svg width={this.state.wSvg} height={this.state.hSvg}>
+                  {states}
+                </svg>
+              </div>
+
+           </div>
+
 
         );
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import WorldMap from './WorldMap';
 import Cards from './Cards';
-import EmotionalRadar from './EmotionalRadar';
 import Timeline from './Timeline'
 import Container from 'react-bootstrap/Container';
 
@@ -69,36 +68,38 @@ class Home extends React.Component{
                     En el siguiente mapa se muestran el <b>Top 3 Hashtags</b> con el total de tweets que hablan
                     acerca del tema de COVID19 por cada estado.
                     La intensidad de color está definida por <b>la cantidad de tweets que se generan en la región</b>:
-                    <ul>
-                      <li>x &gt; 25000  <b>Demasiado</b> número de menciones </li>
-                      <li> 15000 &gt; x &gt; 25000  <b>Mucho</b> número de menciones</li>
-                      <li> 5000 &gt; x &gt; 2500  <b>Mediano</b> número de menciones </li>
-                      <li> 5000 &lt; x   <b>Poco</b> número de menciones </li>
-                    </ul>
                   </p>
-
+                </div>
+                <div className='d-flex justify-content-center text-secondary'>
+                <ul>
+                  <li>x &gt; 25000  <b>Demasiado</b> número de menciones </li>
+                  <li> 15000 &gt; x &gt; 25000  <b>Mucho</b> número de menciones</li>
+                  <li> 5000 &gt; x &gt; 2500  <b>Mediano</b> número de menciones </li>
+                  <li> 5000 &lt; x   <b>Poco</b> número de menciones </li>
+                </ul>
                 </div>
                 <WorldMap/>
               </div>
 
 
+{/*
+  <div className='mt-5 mb-5'>
 
-              <div className='mt-5 mb-5'>
+    <div className='d-flex justify-content-center'>
+      <h1> Emociones en redes sociales </h1>
+      </div>
+      <div className='d-flex justify-content-center text-secondary'>
+      <p>
+        El siguiente radar muestra las emociones que se han generado en el
+        discurso de tweets (Testing)
+      </p>
+    </div>
+    <div className='d-flex justify-content-center text-secondary'>
+      <EmotionalRadar/>
+    </div>
 
-                <div className='d-flex justify-content-center'>
-                  <h1> Emociones en redes sociales </h1>
-                  </div>
-                  <div className='d-flex justify-content-center text-secondary'>
-                  <p>
-                    El siguiente radar muestra las emociones que se han generado en el
-                    discurso de tweets
-                  </p>
-                </div>
-                <div className='d-flex justify-content-center text-secondary'>
-                  <EmotionalRadar/>
-                </div>
+  </div>*/}
 
-              </div>
 
 
 

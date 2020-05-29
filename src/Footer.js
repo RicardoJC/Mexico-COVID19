@@ -2,7 +2,8 @@ import React from 'react';
 
 
 const footerStyles ={
-  height:'80px'
+  height:'80px',
+  paddingTop:'20px'
 
 }
 
