@@ -44,13 +44,13 @@ class Home extends React.Component{
                   <p>
                     La siguiente linea del tiempo presenta 6 palabras clave dentro de los
                     tweets obtenidos en un fin de semana.
-                    Las primeras 2 palabras son acerca del virus y el aislamiento social para conocer cómo los
+                    Las primeras 3 palabras son acerca del virus y el aislamiento social para conocer cómo los
                     usuarios general conversación en twitter.
                     Para el caso de <b>HLGatell y lopezobrador_</b> se
                      buscaron menciones a sus cuentas oficiales. Esto para conocer cómo
                     se van mencionando a medida que pasa el tiempo y el virus avanza.
-                    Finalmente, se agregan las palabras de <b>gripa y neumonía</b> para conocer la frecuencia
-                    de estas enfermedades en los mensajes cortos.
+                    Finalmente, se agrega <b> Susana Distancia </b> para conocer el impacto que timeline en los
+                    usuarios. 
                   </p>
                 </div>
                 <div className='d-flex justify-content-center text-secondary'>

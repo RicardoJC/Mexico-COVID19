@@ -17,7 +17,7 @@ class SymptomsMonitor extends React.Component{
                 Los síntomas presentados tienen 2 categorías principales: los físicos causados por
                 COVID19 como fiebre, tos o gripe y los transtornos ocasionados por el asilamiento
                 social como ansiedad, depresión, insomnio, entre otros.
-          
+
               </p>
             </div>
 
@@ -29,8 +29,10 @@ class SymptomsMonitor extends React.Component{
 
               <div className='d-flex justify-content-center text-secondary'>
                 <p>
-                  La siguiente linea del tiempo presenta, en general, los síntomas que presentan
-                  los usuarios de Twitter.
+                  El siguiente gráfico representa la cantidad de síntomas relacionados al COVID-19
+                  y a los distintos síntomas mentales que se pueden presentar en la población debido al aislamiento social y demás factores.
+                  Por cada día se presentan dos valores, cada uno de ellos indica la cantidad de apariciones de síntomas de cada tipo (COVID-19 y mentales o psicológicos),
+                  esto con el fin de conocer cómo afecta el paso del tiempo a la frecuencia de estos dos valores.
                 </p>
               </div>
               <div className='d-flex justify-content-center text-secondary'>
@@ -45,7 +47,8 @@ class SymptomsMonitor extends React.Component{
               </div>
               <div className='d-flex justify-content-center text-secondary'>
                 <p>
-                  Descripción del análisis
+                  El siguiente mapa representa la cantidad de tweets por Alcaldía de la Ciudad de México que contienen síntomas relacionados al COVID-19 y síntomas mentales relacionados al distanciamiento social.
+                  Estos valores no son acumulativos, por lo que cada día cambian.
                 </p>
               </div>
                 <MexicoCityMap/>
