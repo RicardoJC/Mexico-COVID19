@@ -24,14 +24,14 @@ class SymptomsMonitor extends React.Component{
             <div className='mt-5 mb-5'>
 
               <div className='d-flex justify-content-center'>
-                <h1> Linea del tiempo de síntomas COVID vs mentales</h1>
+                <h1> Línea del tiempo de síntomas COVID vs salud mental</h1>
               </div>
 
               <div className='d-flex justify-content-center text-secondary'>
                 <p>
                   El siguiente gráfico representa la cantidad de síntomas relacionados al COVID-19
-                  y a los distintos síntomas mentales que se pueden presentar en la población debido al aislamiento social y demás factores.
-                  Por cada día se presentan dos valores, cada uno de ellos indica la cantidad de apariciones de síntomas de cada tipo (COVID-19 y mentales o psicológicos),
+                  y los estados de salud mental que se pueden presentar en la población debido al aislamiento social y demás factores.
+                  Por cada día se presentan dos valores, cada uno de ellos indica la cantidad de apariciones de síntomas de cada tipo (COVID-19 y estados de salud mental o psicológicos),
                   esto con el fin de conocer cómo afecta el paso del tiempo a la frecuencia de estos dos valores.
                 </p>
               </div>
@@ -47,7 +47,7 @@ class SymptomsMonitor extends React.Component{
               </div>
               <div className='d-flex justify-content-center text-secondary'>
                 <p>
-                  El siguiente mapa representa la cantidad de tweets por Alcaldía de la Ciudad de México que contienen síntomas relacionados al COVID-19 y síntomas mentales relacionados al distanciamiento social.
+                  El siguiente mapa representa la cantidad de tweets por Alcaldía de la Ciudad de México que contienen síntomas relacionados al COVID-19 y los estados de salud mental relacionados al distanciamiento social.
                   Estos valores no son acumulativos, por lo que cada día cambian.
                 </p>
               </div>

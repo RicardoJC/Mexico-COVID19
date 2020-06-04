@@ -79,7 +79,7 @@ class Timeline extends PureComponent {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="natural" dataKey="Sintomas mentales" stroke="#9336b5" strokeWidth='1' animationDuration={2000} />
+          <Line type="natural" dataKey="Estados mentales" stroke="#9336b5" strokeWidth='1' animationDuration={2000} />
           <Line type="natural" dataKey="Sintomas COVID" stroke="#eb0e63" strokeWidth='1' animationDuration={1500}/>
           </LineChart>
         </ResponsiveContainer>
