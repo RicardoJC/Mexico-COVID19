@@ -23,7 +23,7 @@ class WorldMap extends Component {
       error: null,
       isLoaded: false,
       data: [],
-      statistics:[]
+      time: 'Pendiente',
     };
   }
 
@@ -31,35 +31,15 @@ class WorldMap extends Component {
     window.addEventListener("resize", this.resize.bind(this));
     this.resize();
 
-    fetch("https://raw.githubusercontent.com/RicardoJC/Mexico-Datos-COVID19/master/home/mexico.geojson")
+    fetch("https://raw.githubusercontent.com/RicardoJC/Mexico-Datos-COVID19/master/emotions/mexico.geojson")
           .then(res => res.json())
           .then(
             (result) => {
               this.setState({
                 isLoaded: true,
-                data: result.features
+                data: result.features,
+                time : result.time
               });
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-              this.setState({
-                isLoaded: true,
-                error
-              });
-            }
-          );
-
-    fetch("https://raw.githubusercontent.com/RicardoJC/Mexico-Datos-COVID19/master/home/mexico.geojson")
-          .then(res => res.json())
-          .then(
-            (result) => {
-              this.setState({
-                isLoaded: true,
-                statistics: result.features
-              });
-              console.log('Se obtuvieron estadisticas por estado')
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow
@@ -107,10 +87,9 @@ class WorldMap extends Component {
     //this.setState({hideNav: window.innerWidth <= 760});
   }
 
-
   render() {
 
-    const { error, isLoaded, data } = this.state;
+    const { error, isLoaded, data, time } = this.state;
 
     if(error){
       return <div className='d-flex justify-content-center'>Error al cargar el mapa</div>
@@ -130,8 +109,8 @@ class WorldMap extends Component {
         d3.select('.nav_map').style('visibility','visible')
         d3.select('.nav_map').transition().duration(200).attr('opacity',0.9)
         d3.select('.nav_map').html("<h5>" + data.properties.name + "</h5>" +
-        "<span class='font-weight-light'>Total de tweets: <br/> <span/><span class='font-weight-bolder'>"+this.state.statistics[countryIndex].properties.totales+"</span><br/>" +
-        "<span class='font-weight-light'>Tweets sobre Covid19: <br/><span/><span class='font-weight-bolder'>"+this.state.statistics[countryIndex].properties.activos+"</span>").style('left',(e.pageX) + 'px').style('top',(e.pageY-10) + 'px')
+        "<span class='font-weight-light'>Total de tweets: <br/> <span/><span class='font-weight-bolder'>"+this.state.data[countryIndex].properties.data.total+"</span><br/>" +
+        "<span class='font-weight-light'>Top 3 Hashtags: <br/><span/><span class='font-weight-bolder'>"+ hashtags(this.state.data[countryIndex].properties.data) +"</span>").style('left',(e.pageX) + 'px').style('top',(e.pageY-10) + 'px')
       }
 
       const mouseOut = (data, countryIndex) => {
@@ -139,17 +118,39 @@ class WorldMap extends Component {
         d3.select('.nav_map').style('visibility','hidden')
       }
 
-      const colorIntensity = pos =>{
-        if(pos > 100){
-          return 0.8;
-        }else if(pos > 50 && pos <= 100){
-          return 0.5;
-        }else if(pos > 25 && pos <= 50){
-          return 0.3;
-        }else{
-          return 0.1;
+      const colorMap = pos =>{
+        var tagMax = '';
+        var max = 0;
+        for (var key in pos){
+          if(key.localeCompare('enojo') === 0
+          || key.localeCompare('anticipacion') === 0
+          || key.localeCompare('disgusto') === 0
+          || key.localeCompare('miedo') === 0
+          || key.localeCompare('alegria') === 0
+          || key.localeCompare('tristeza') === 0
+          || key.localeCompare('alegria') === 0
+          || key.localeCompare('sorpresa') === 0
+          || key.localeCompare('confianza') === 0){
+            if (max < pos[key]){
+              max = pos[key];
+              tagMax = key;
+
+            }
+          }
         }
+        console.log(tagMax,max);
+
+        return "49,194,232,40";
       }
+
+      const hashtags = data => {
+        var tags = '';
+        for (var key in data){
+          tags = tags + key + ' : ' + data[key] + '\n'
+        }
+        return tags;
+      }
+
 
 
       const pathGenerator = d3.geoPath().projection(projection);
@@ -158,7 +159,7 @@ class WorldMap extends Component {
          key={'path' + i}
          d={pathGenerator(d)}
          className='states'
-         fill={ `rgba(49,104,232,${ colorIntensity(d.properties.totales) })` }
+         fill={ `rgba(${ colorMap(d.properties.data) })` }
          stroke="#000"
          strokeWidth={ 1 }
          onMouseOver = { (e) => handleCountryClick(e,d,i) }
@@ -166,13 +167,18 @@ class WorldMap extends Component {
          />);
 
          return(
-
+           <div>
+           <div className='d-flex justify-content-center font-weight-lighter'>
+             <span>Última actualización: {time}</span>
+           </div>
            <div className='d-flex justify-content-center' id='map'>
              <div className='nav_map'></div>
-            <svg width={this.state.wSvg} height={this.state.hSvg}>
-            {states}
-            </svg>
-          </div>
+             <svg width={this.state.wSvg} height={this.state.hSvg}>
+             {states}
+             </svg>
+           </div>
+           </div>
+
 
         );
 
