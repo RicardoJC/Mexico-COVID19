@@ -81,8 +81,6 @@ class Timeline extends PureComponent {
           <Legend />
           <ReferenceLine x="2020-04-21" label="Fase 3" stroke="red" />
           <ReferenceLine x="2020-05-31" label="Fin de jornada de sana distancia" stroke="red" />
-          <Line type="natural" dataKey="negativo" stroke="#fc1303" strokeWidth='1' animationDuration={1000} />
-          <Line type="natural" dataKey="positivo" stroke="#27e0f5" strokeWidth='1' animationDuration={1500}/>
           <Line type="natural" dataKey="Tweets_Negativo" stroke="#c338f5" strokeWidth='1' animationDuration={2000}/>
           <Line type="natural" dataKey="Tweets_Positivo" stroke="#433bdb" strokeWidth='1' animationDuration={2500}/>
           <Line type="natural" dataKey="Tweets_Neutro" stroke="#888888" strokeWidth='1' animationDuration={3000} />
