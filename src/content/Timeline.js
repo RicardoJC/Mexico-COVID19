@@ -80,7 +80,7 @@ class Timeline extends PureComponent {
           <Tooltip />
           <Legend />
           <ReferenceLine x="2020-04-21" label="Fase 3" stroke="red" />
-          <ReferenceLine x="2020-05-31" label="Fin jornada" stroke="red" />
+          <ReferenceLine x="2020-05-31" label="Fin de jornada de sana distancia" stroke="red" />
           <Line type="natural" dataKey="coronavirus" stroke="#00e676" strokeWidth='1' animationDuration={4000} />
           <Line type="natural" dataKey="quedateencasa" stroke="#1b5e20" strokeWidth='1' animationDuration={3500}/>
           <Line type="natural" dataKey="covid19" stroke="#e65100" strokeWidth='1' animationDuration={1500}/>
