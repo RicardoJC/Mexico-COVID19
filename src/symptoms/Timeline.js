@@ -81,6 +81,7 @@ class Timeline extends PureComponent {
           <Legend />
           <ReferenceLine x="2020-04-21" label="Fase 3" stroke="red" />
           <ReferenceLine x="2020-05-31" label="Fin de jornada de sana distancia" stroke="red" />
+          <ReferenceLine x="2020-06-29" label="Cambio a semáforo naranja" stroke="red" />
           <Line type="natural" dataKey="Estados mentales" stroke="#9336b5" strokeWidth='1' animationDuration={2000} />
           <Line type="natural" dataKey="Sintomas COVID" stroke="#eb0e63" strokeWidth='1' animationDuration={1500}/>
           </LineChart>
