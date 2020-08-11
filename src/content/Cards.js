@@ -53,9 +53,9 @@ class Cards extends React.Component{
 
   render(){
     const {error,isLoaded,data,time} = this.state;
-    var hashtags = {t1:'',w1:'',t2:'',w2:'',t3:'',w3:''};
-    var mentions = {t1:'',w1:'',t2:'',w2:'',t3:'',w3:''};
-    var words = {t1:'',w1:'',t2:'',w2:'',t3:'',w3:''};
+    var hashtags = {t1:'',w1:'',t2:'',w2:'',t3:'',w3:'',t4:'',w4:'',t5:'',w5:''};
+    var mentions = {t1:'',w1:'',t2:'',w2:'',t3:'',w3:'',t4:'',w4:'',t5:'',w5:''};
+    var words = {t1:'',w1:'',t2:'',w2:'',t3:'',w3:'',t4:'',w4:'',t5:'',w5:''};
     if(!error && isLoaded){
       hashtags = data[0];
       mentions = data[1];
@@ -70,7 +70,7 @@ class Cards extends React.Component{
       </div>
         <Row >
         <Col className='d-flex justify-content-center'>
-        <Card style={{ width: '18rem', height:'13em' }}>
+        <Card style={{ width: '18rem', height:'19em' }}>
           <Card.Body>
           <Card.Title className="mb-2 text-muted ">Hashtags de hoy</Card.Title>
           <div className="d-table justify-content-left">
@@ -88,12 +88,22 @@ class Cards extends React.Component{
             <div className="d-table-cell text-muted">{hashtags.w3}</div>
           </div>
 
+          <div className="d-table justify-content-left">
+            <div className="d-table-cell font-weight-bold"><h2>{hashtags.t4}&nbsp;</h2></div>
+            <div className="d-table-cell text-muted">{hashtags.w4}</div>
+          </div>
+
+          <div className="d-table justify-content-left">
+            <div className="d-table-cell font-weight-bold"><h2>{hashtags.t5}&nbsp;</h2></div>
+            <div className="d-table-cell text-muted">{hashtags.w5}</div>
+          </div>
+
           </Card.Body>
         </Card>
         </Col>
 
           <Col className='d-flex justify-content-center'>
-          <Card style={{ width: '18rem', height:'13em' }}>
+          <Card style={{ width: '18rem', height:'19em' }}>
           <Card.Body>
             <Card.Title className="mb-2 text-muted ">Menciones de hoy</Card.Title>
             <div className="d-table justify-content-left">
@@ -110,12 +120,23 @@ class Cards extends React.Component{
               <div className="d-table-cell font-weight-bold"><h2>{mentions.t3}&nbsp;</h2></div>
               <div className="d-table-cell text-muted">{mentions.w3}</div>
             </div>
+
+            <div className="d-table justify-content-left">
+              <div className="d-table-cell font-weight-bold"><h2>{mentions.t4}&nbsp;</h2></div>
+              <div className="d-table-cell text-muted">{mentions.w4}</div>
+            </div>
+
+            <div className="d-table justify-content-left">
+              <div className="d-table-cell font-weight-bold"><h2>{mentions.t5}&nbsp;</h2></div>
+              <div className="d-table-cell text-muted">{mentions.w5}</div>
+            </div>
+
           </Card.Body>
           </Card>
           </Col>
 
           <Col className='d-flex justify-content-center'>
-          <Card style={{ width: '18rem', height:'13em' }}>
+          <Card style={{ width: '18rem', height:'19em' }}>
           <Card.Body>
             <Card.Title className="mb-2 text-muted ">Palabras de hoy</Card.Title>
             <div className="d-table justify-content-left">
@@ -131,6 +152,16 @@ class Cards extends React.Component{
             <div className="d-table justify-content-left">
               <div className="d-table-cell font-weight-bold"><h2>{words.t3}&nbsp;</h2></div>
               <div className="d-table-cell text-muted">{words.w3}</div>
+            </div>
+
+            <div className="d-table justify-content-left">
+              <div className="d-table-cell font-weight-bold"><h2>{words.t4}&nbsp;</h2></div>
+              <div className="d-table-cell text-muted">{words.w4}</div>
+            </div>
+
+            <div className="d-table justify-content-left">
+              <div className="d-table-cell font-weight-bold"><h2>{words.t5}&nbsp;</h2></div>
+              <div className="d-table-cell text-muted">{words.w5}</div>
             </div>
 
 
